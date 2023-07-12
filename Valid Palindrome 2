@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        
+        int a_pointer = 0;
+        int b_pointer = s.length()-1;
+
+        while(a_pointer <= b_pointer){
+            if(s[a_pointer] != s[b_pointer]){
+                //we are incrementing a counter to remove a character and then decrementing b counter to remove character from right side
+                return helperMethod(s, a_pointer+1, b_pointer) || helperMethod(s, a_pointer, b_pointer-1);
+            }
+            a_pointer++;
+            b_pointer--;
+        }
+        return true;
+    }
+
+    bool helperMethod(string s, int i, int j){
+        int a_pointer = i;
+        int b_pointer = j;
+
+        while(a_pointer <= b_pointer){
+            if(s[a_pointer] != s[b_pointer]){
+                return false;
+            }
+            a_pointer++;
+            b_pointer--;
+        }
+        return true;
+    }
+};
