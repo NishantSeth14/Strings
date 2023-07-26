@@ -1,1 +1,28 @@
-
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        string sb;
+        int open = 0;
+        for(char c : s){
+            if(c == '('){
+                open++;
+            }
+            else if(c == ')'){
+                if(open == 0){
+                    continue;
+                }
+                open--;
+            }
+            sb.push_back(c);
+        }
+        string result;
+        for(int i=sb.length()-1; i>=0; i--){
+            if(sb[i] == '(' && open-- > 0){
+                continue;
+            }
+            result.push_back(sb[i]);
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
